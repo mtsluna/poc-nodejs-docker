@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  docker-example:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-example
+    container_name: nodejs-example
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
